@@ -36,7 +36,7 @@ pipeline {
     stage("Publish") {
       when { expression { params.publish } }
       steps {
-        withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
+        withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
           sh "npx semantic-release"
         }
       }
