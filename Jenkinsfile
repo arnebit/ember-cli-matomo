@@ -1,5 +1,8 @@
 pipeline {
   agent { docker 'node:12' }
+  environment {
+    HOME = "/tmp"
+  }
   stages {
     stage("Install dependencies") {
       steps {
