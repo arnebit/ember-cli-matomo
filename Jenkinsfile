@@ -10,7 +10,6 @@ pipeline {
     NPM_CONFIG_REGISTRY = "https://npm.oi-services.net"
     GITHUB_ACTION = "true"  // Mimic GITHUB_ACTION mode for semantic-release
     GITHUB_REF = "$GIT_BRANCH" // Needed because we mimic github action
-    DEBUG = "semantic-release:*"
   }
   stages {
     stage("Install dependencies") {
