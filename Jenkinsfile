@@ -25,6 +25,11 @@ pipeline {
           steps {
             sh "npm run build"
           }
+          post {
+            success {
+              archiveArtifacts artifacts: "dist/**"
+            }
+          }
         }
       }
     }
