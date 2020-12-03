@@ -34,9 +34,9 @@ pipeline {
     stage("Publish") {
       when { expression { params.publish } }
       steps {
-        sh "echo '(1) $GIT_BRANCH $BRANCH_NAME'"
+        sh 'echo "(1)" $GIT_BRANCH $BRANCH_NAME $JENKINS_URL'
         withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
-          sh "echo '(2) $GIT_BRANCH $BRANCH_NAME'"
+          sh 'echo "(2)" $GIT_BRANCH $BRANCH_NAME'
           sh "npx semantic-release"
         }
       }
