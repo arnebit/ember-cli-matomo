@@ -1,9 +1,28 @@
 pipeline {
-  agent any
+  agent { docker 'node:12' }
   stages {
-    stage('Test') {
+    stage("Install dependencies") {
       steps {
-        sh 'echo 1'
+        sh "npm install"
+      }
+    }
+    stage('…') {
+      parallel {
+        stage("Lint") {
+          steps {
+            sh "npm run lint:js"
+          }
+        }
+        stage("Test") {
+          steps {
+            sh "npm run test"
+          }
+        }
+        stage("Build") {
+          steps {
+            sh "npm run build"
+          }
+        }
       }
     }
   }
