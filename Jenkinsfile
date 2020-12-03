@@ -13,6 +13,7 @@ pipeline {
   stages {
     stage("Install dependencies") {
       steps {
+        sh "echo $GIT_BRANCH ${params.branch}"
         sh "npm install"
       }
     }
