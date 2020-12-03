@@ -9,7 +9,7 @@ pipeline {
     NPM_EMAIL = "jenkins@oi-services.net"
     NPM_CONFIG_REGISTRY = "https://npm.oi-services.net"
     GITHUB_ACTION = "true"  // Mimic GITHUB_ACTION mode for semantic-release
-    JENKINS_URL = "http://localhost" // This seems to be a Jenkins bug
+    GITHUB_REF = "$GIT_BRANCH" // Needed because we mimic github action
   }
   stages {
     stage("Install dependencies") {
