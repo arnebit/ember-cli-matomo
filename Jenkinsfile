@@ -13,7 +13,6 @@ pipeline {
   stages {
     stage("Install dependencies") {
       steps {
-        sh "echo $GIT_BRANCH ${params.branch}"
         sh "npm install"
       }
     }
@@ -35,7 +34,9 @@ pipeline {
     stage("Publish") {
       when { expression { params.publish } }
       steps {
+        sh "echo '(1) $GIT_BRANCH $BRANCH_NAME'"
         withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
+          sh "echo '(2) $GIT_BRANCH $BRANCH_NAME'"
           sh "npx semantic-release"
         }
       }
