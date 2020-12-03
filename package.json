@@ -1,10 +1,15 @@
 {
-  "name": "ember-cli-matomo",
+  "name": "@oi/ember-cli-matomo",
   "version": "0.2.0",
+  "license": "MIT",
   "description": "Inject Matomo/Piwik tracking into an ember-cli application",
   "directories": {
     "doc": "doc",
     "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oceaninsights/ember-cli-matomo.git"
   },
   "scripts": {
     "build": "ember build",
@@ -37,7 +42,8 @@
     "ember-source": "~2.18.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "npm-cli-login": "~0.1.1"
   },
   "keywords": [
     "ember-addon",
