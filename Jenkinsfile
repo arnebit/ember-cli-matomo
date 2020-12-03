@@ -2,6 +2,7 @@ pipeline {
   agent { docker 'node:12' }
   parameters {
         booleanParam(name: 'publish', defaultValue: false, description: 'Publish npm package')
+        booleanParam(name: 'skip_tests', defaultValue: false, description: 'Skip tests')
   }
   environment {
     HOME = "/tmp"
@@ -15,6 +16,7 @@ pipeline {
       }
     }
     stage('…') {
+      when { expression { !params.skip_tests } }
       parallel {
         stage("Lint") {
           steps {
@@ -32,7 +34,7 @@ pipeline {
       when { expression { params.publish } }
       steps {
         withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
-          sh "semantic-release"
+          sh "npx semantic-release"
         }
       }
     }
