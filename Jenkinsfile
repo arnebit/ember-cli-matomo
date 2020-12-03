@@ -9,6 +9,7 @@ pipeline {
     NPM_EMAIL = "jenkins@oi-services.net"
     NPM_CONFIG_REGISTRY = "https://npm.oi-services.net"
     GITHUB_ACTION = "true"  // Mimic GITHUB_ACTION mode for semantic-release
+    JENKINS_URL = "http://localhost" // This seems to be a Jenkins bug
   }
   stages {
     stage("Install dependencies") {
@@ -34,9 +35,7 @@ pipeline {
     stage("Publish") {
       when { expression { params.publish } }
       steps {
-        sh 'echo "(1)" $GIT_BRANCH $BRANCH_NAME $JENKINS_URL'
         withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
-          sh 'echo "(2)" $GIT_BRANCH $BRANCH_NAME'
           sh "npx semantic-release"
         }
       }
