@@ -8,6 +8,7 @@ pipeline {
     HOME = "/tmp"
     NPM_EMAIL = "jenkins@oi-services.net"
     NPM_CONFIG_REGISTRY = "https://npm.oi-services.net"
+    GITHUB_ACTION = "true"  // Mimic GITHUB_ACTION mode for semantic-release
   }
   stages {
     stage("Install dependencies") {

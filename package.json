@@ -1,6 +1,6 @@
 {
   "name": "@oi/ember-cli-matomo",
-  "version": "0.2.0",
+  "version": "0.0.5",
   "license": "MIT",
   "description": "Inject Matomo/Piwik tracking into an ember-cli application",
   "directories": {
