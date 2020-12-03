@@ -9,7 +9,7 @@ Forked from ember-cli-piwik, which was marked **[p]lease note that this is not p
 In your project root, run:
 
 ```bash
-ember install ember-cli-matomo
+ember install @oi/ember-cli-matomo
 ```
 
 ## Configuration
@@ -94,7 +94,7 @@ mixin:
 // app/router.js
 import Ember from 'ember';
 import config from './config/environment';
-import Piwik from 'ember-cli-matomo/mixins/page-view-tracker';
+import Piwik from '@oi/ember-cli-matomo/mixins/page-view-tracker';
 
 const Router = Ember.Router.extend(Piwik, {
   location: config.locationType

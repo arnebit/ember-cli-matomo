@@ -1,7 +1,12 @@
 pipeline {
   agent { docker 'node:12' }
+  parameters {
+        booleanParam(name: 'publish', defaultValue: false, description: 'Publish npm package')
+  }
   environment {
     HOME = "/tmp"
+    NPM_EMAIL = "jenkins@oi-services.net"
+    NPM_CONFIG_REGISTRY = "https://npm.oi-services.net"
   }
   stages {
     stage("Install dependencies") {
@@ -21,15 +26,13 @@ pipeline {
             sh "npm run test"
           }
         }
-        stage("Build") {
-          steps {
-            sh "npm run build"
-          }
-          post {
-            success {
-              archiveArtifacts artifacts: "dist/**"
-            }
-          }
+      }
+    }
+    stage("Publish") {
+      when { expression { params.publish } }
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'github-app-oceaninsights', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER'), usernamePassword(credentialsId: 'private-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
+          sh "semantic-release"
         }
       }
     }

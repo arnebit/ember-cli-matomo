@@ -9,7 +9,7 @@ import { on } from '@ember/object/evented';
  *
  * @class PageViewTrackerMixin
  * @example
- * import Matomo from 'ember-cli-matomo/mixins/page-view-tracker'
+ * import Matomo from '@oi/ember-cli-matomo/mixins/page-view-tracker'
  * const Router = Ember.Router.extend(Matomo, {
  *   // ...
  * });
